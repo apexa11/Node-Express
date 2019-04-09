@@ -8,9 +8,13 @@ const app = express()
 
 /** set view directory path */
 app.set('views', path.join(__dirname,'views'))
+
 /** set mustache templating engine */
 app.set('view engine', 'mustache')
 app.engine('mustache', require('hogan-middleware').__express)
+
+/** set static dir */
+app.use(express.static(path.join(__dirname,'public')))
 
 /** add routes */
 app.get('/',(req, res, next) => {
@@ -29,3 +33,4 @@ app.get('/home',(req, res, next) => {
 })
 
 app.listen(3000)
+console.log('Server is Running.')
